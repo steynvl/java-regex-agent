@@ -49,7 +49,15 @@ public class RegexClassFileTransformer implements ClassFileTransformer {
                         "\"------String matches(String regex)---regex: \" + $1+\"---input: \"+this+\"---#\"")
         );
 
+        if (className.contains("java") && className.contains("Pattern")) {
+            System.out.println(className + " <<<");
+        }
+
         for (ConfigInfo configInfo : configs) {
+//            if (className.contains("Pattern")) {
+//                System.out.println(className + " - " + configInfo.getClassName());
+//            }
+
             if (className.equals(configInfo.getClassName())) {
                 try {
                     cp = ClassPool.getDefault();
@@ -61,7 +69,11 @@ public class RegexClassFileTransformer implements ClassFileTransformer {
                     byte[] byteCode = cc.toBytecode();
                     cc.detach();
                     return byteCode;
-                } catch (NotFoundException | IOException | CannotCompileException e) {
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (CannotCompileException e) {
                     e.printStackTrace();
                 }
             }
