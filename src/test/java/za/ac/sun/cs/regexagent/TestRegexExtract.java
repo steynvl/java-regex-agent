@@ -17,19 +17,11 @@ public class TestRegexExtract {
         String text = "This is the text which is to be searched "
                 + "for occurrences of the word 'is'.";
         String patternString = "is";
-//        String patternString = "is";
 
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(text);
+        Pattern pattern = Pattern.compile("is");
+        Matcher matcher = pattern.matcher(patternString);
 
-//        matcher.find();
-//        System.out.println(matcher);
-//        System.out.println(matcher.group());
-//        matcher.find();
-//        System.out.println(matcher);
-//        System.out.println(matcher.group());
-//        matcher.reset();
-//        System.out.println(matcher);
+        for (int i = 0; i < 3; i++) matcher.find();
     }
 
 //    @Test

@@ -7,4 +7,4 @@ mvn clean && mvn package
 mv target/java-regex-agent-1.0-SNAPSHOT.jar lib/regex-instrument.jar
 
 printf "\n-----------\n"
-printf "JAR filed generated and moved to lib/regex-instrument.jar.\n"
+printf "JAR file generated and moved to lib/regex-instrument.jar.\n"

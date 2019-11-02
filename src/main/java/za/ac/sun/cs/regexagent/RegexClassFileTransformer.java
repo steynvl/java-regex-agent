@@ -24,7 +24,7 @@ public class RegexClassFileTransformer implements ClassFileTransformer {
     private final String logName;
 
     public RegexClassFileTransformer(String logName) {
-        this.logName = logName.endsWith(".log") ? logName : String.format("%s.log", logName);
+        this.logName = logName.endsWith(".log") ? logName : logName + ".log";
     }
 
     @Override
@@ -54,9 +54,6 @@ public class RegexClassFileTransformer implements ClassFileTransformer {
         }
 
         for (ConfigInfo configInfo : configs) {
-//            if (className.contains("Pattern")) {
-//                System.out.println(className + " - " + configInfo.getClassName());
-//            }
 
             if (className.equals(configInfo.getClassName())) {
                 try {
@@ -69,11 +66,7 @@ public class RegexClassFileTransformer implements ClassFileTransformer {
                     byte[] byteCode = cc.toBytecode();
                     cc.detach();
                     return byteCode;
-                } catch (NotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (CannotCompileException e) {
+                } catch (NotFoundException | IOException | CannotCompileException e) {
                     e.printStackTrace();
                 }
             }
